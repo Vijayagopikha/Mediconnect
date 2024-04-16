@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .input-group select, .input-group input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .input-group select:focus, .input-group input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sign Up</h2>
+  <form id="signup-form">
+
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn">Sign Up</button>
+  </form>
+</div>
+<script>
+  // JavaScript to handle form submission
+  document.getElementById('signup-form').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  // Get form data
+  const formData = new FormData(this);
+  const data = {};
+  for (let [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  // Send form data to backend
+  try {
+    const response = await fetch('http://localhost:5000/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        alert('Sign up successful!');
+        // Optionally, redirect the user to another page after successful signup
+        // window.location.href = '/success.html';
+      } else {
+        const errorData = await response.json();
+        alert('Error: ' + errorData.error);
+      }
+    // Handle response as before...
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An unexpected error occurred. Please try again later.');
+  }
+});
+</script>
+</body>
+</html>

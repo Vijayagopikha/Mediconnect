@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.2s ease-out;
+    text-decoration: none;
+}
+
+html {
+    font-size: 95%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(9, 9, 9);
+    font-size: 1rem;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 9%;
+    z-index: 2000;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+}
+
+.navbar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.header .logo i {
+    color: red;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: brown;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 3rem;
+}
+
+.navbar .toggle_btn {
+    color: rgb(9, 9, 9);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Add underline effect to li tags when hovered */
+.navbar .links li {
+    position: relative;
+}
+
+/* Outer underline */
+.navbar .links li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust this value to control the distance between the text and the line */
+    left: 0;
+    width: 100%;
+    height: 3px; /* Adjust the thickness of the underline */
+    background-color: transparent; /* Set initial color */
+    transition: background-color 0.3s ease; /* Added transition for color change */
+}
+
+.navbar .links li:hover::after {
+    background-color: darkblue; /* Color of the outer underline on hover */
+}
+
+/* Inner underline */
+.navbar .links li::before {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Adjust this value to control the distance between the text and the line */
+    left: 0;
+    width: 100%;
+    height: 1.5px; /* Adjust the thickness of the underline */
+    background-color: transparent; /* Set initial color */
+    transition: background-color 0.3s ease; /* Added transition for color change */
+}
+
+
+/* Style the links inside the dropdown menu */
+.dropdown_menu li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust this value to control the distance between the text and the line */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Adjust the thickness of the underline */
+    background-color: transparent; /* Set initial color */
+    transition: background-color 0.3s ease; /* Added transition for color change */
+}
+
+.dropdown_menu li:hover::after {
+    background-color: aqua; /* Color of the underline on hover */
+}
+
+
+.action_btn {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.action_btn:hover {
+    background-color: darkblue;
+}
+
+/* Add underline effect to li tags when hovered */
+
+
+
+.dropdown_menu {
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 250px; /* Reduced width for better fit */
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Improved box shadow */
+    display: none; /* Hide dropdown menu by default */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Added transition for smooth appearance */
+    opacity: 0; /* Start with opacity 0 */
+    transform: translateY(-10px); /* Start with slight upward translation */
+}
+
+.dropdown_menu.show {
+    display: block; /* Show dropdown menu when 'show' class is applied */
+    opacity: 1; /* Fade in effect */
+    transform: translateY(0); /* Move to original position */
+}
+
+.dropdown_menu ul {
+    padding: 0; /* Remove default padding */
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Adjust alignment */
+    transition: background-color 0.3s ease; /* Added transition for hover effect */
+}
+
+.dropdown_menu li:hover {
+    background-color: #f5f5f5; /* Light background color on hover */
+}
+
+.dropdown_menu .action_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style the links inside the dropdown menu */
+.dropdown_menu a {
+    color: #333; /* Text color */
+    font-size: 0.9rem;
+    transition: color 0.3s ease; /* Added transition for color change */
+}
+
+.dropdown_menu a:hover {
+    color: #007bff; /* Text color on hover */
+}
+
+
+@media (max-width: 992px) {
+    .navbar .links,
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    /* Show dropdown menu when toggle button is clicked */
+    .navbar .toggle_btn:checked + .dropdown_menu {
+        display: block;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Page</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="firstpagestyle.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+           <div class="logo"><i class="fas fa-heartbeat"></i>MediConnect</div>
+            <ul class="links">
+                <li><a href="firstpage.html">home</a></li>
+                <li><a href="doctor">Find Doctors</a></li>
+                <li><a href="video">Video Consult</a></li>
+                <li><a href="medical">Medicines</a></li>
+                <li><a href="lab">Lab Tests</a></li>
+                <li><a href="sur">Surgeries</a></li>
+            </ul>
+            <a href="#" class="action_btn">Login/SignUp</a>
+            <div class="toggle_btn" id="toggle-btn">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+
+        <div class="dropdown_menu" id="dropdown-menu">
+            <ul>
+                <li><a href="firstpage.html">home</a></li>
+                <li><a href="doctor">Find Doctors</a></li>
+                <li><a href="video">Video Consult</a></li>
+                <li><a href="medical">Medicines</a></li>
+                <li><a href="lab">Lab Tests</a></li>
+                <li><a href="sur">Surgeries</a></li>
+                <li><a href="#" class="action_btn">Login/SignUp</a></li>
+            </ul>
+        </div>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('toggle-btn');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            toggleBtn.addEventListener('click', function () {
+                dropdownMenu.classList.toggle('show');
+            });
+        });
+    </script>
+    </header>
+</body>
+</html>
