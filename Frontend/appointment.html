@@ -141,6 +141,8 @@ for (let [key, value] of formData.entries()) {
         // Fill email field in appointment form if email is present
         if (loggedInUserEmail) {
             document.getElementById('email').value = loggedInUserEmail;
+            emailField.value = loggedInUserEmail;
+            emailField.setAttribute('readonly', 'true');
         }
     });
     </script>
