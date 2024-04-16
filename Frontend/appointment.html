@@ -134,6 +134,15 @@ for (let [key, value] of formData.entries()) {
                 alert('An unexpected error occurred. Please try again later.');
             }
         });
+         document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve email from local storage
+        const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+
+        // Fill email field in appointment form if email is present
+        if (loggedInUserEmail) {
+            document.getElementById('email').value = loggedInUserEmail;
+        }
+    });
     </script>
 </body>
 </html>

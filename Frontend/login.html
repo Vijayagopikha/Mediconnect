@@ -106,6 +106,7 @@
                 if (response.ok) {
                     const responseData = await response.json();
                     alert('Login successful!');
+                    localStorage.setItem('loggedInUserEmail', data['email']);
                     // Optionally, redirect the user to another page after successful login
                     // window.location.href = '/dashboard.html';
                 } else {

@@ -84,7 +84,7 @@
   for (let [key, value] of formData.entries()) {
     data[key] = value;
   }
-
+ 
   // Send form data to backend
   try {
     const response = await fetch('http://localhost:5000/signup', {
