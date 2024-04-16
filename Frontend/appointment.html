@@ -110,7 +110,7 @@
 for (let [key, value] of formData.entries()) {
   formDataObject[key] = value;
 }
-             console.log(formData);
+
             // Send form data to backend
             try {
                 const response = await fetch('http://localhost:5000/submit-appointment', {
