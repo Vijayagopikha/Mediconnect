@@ -69,6 +69,33 @@ app.post('/signup', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+// Route to handle user login
+app.post('/login', async (req, res) => {
+    try {
+      // Extract email and password from request body
+      const { email, password } = req.body;
+  
+      // Find user by email
+      const user = await User.findOne({ email });
+  
+      if (!user) {
+        // User not found
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if password matches
+      if (user.password !== password) {
+        // Password incorrect
+        return res.status(401).json({ error: 'Incorrect password' });
+      }
+  
+      // Password correct, login successful
+      res.status(200).json({ message: 'Login successful', user });
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
 // Route to handle form submission for appointment
 app.post('/submit-appointment', async (req, res) => {
