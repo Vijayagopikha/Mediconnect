@@ -67,7 +67,7 @@
 
     <div class="appointment-form">
         <h2>Appointment Details</h2>
-        <form id="appointment-form" > 
+        <form id="appointment-form"> 
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -90,17 +90,17 @@
             </div>
             <div class="form-group">
                 <label for="date">Appointment Date:</label>
-                <input type="date" id="date" name="date" required>
+                <input type="text" id="date" name="date" disabled required>
             </div>
             <div class="form-group">
                 <label for="time">Appointment Time:</label>
-                <input type="time" id="time" name="time" required>
+                <input type="text" id="time" name="time" disabled required>
             </div>
             <button type="submit">Submit</button>
         </form>
     </div>
     <script>
-         document.getElementById('appointment-form').addEventListener('submit', async function(event) {
+        document.getElementById('appointment-form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
             // Get form data
@@ -133,7 +133,7 @@
                 alert('An unexpected error occurred. Please try again later.');
             }
         });
-
+ 
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve email from local storage
             const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
@@ -147,18 +147,17 @@
             }else {
                 emailField.removeAttribute('readonly');
             }
-      
 
-        
+  
             // Retrieve selected date and time from localStorage
-            const selectedDateTime = localStorage.getItem('selectedDateTime');
+            const selectedDate = localStorage.getItem('selectedDate');
+            const selectedTime = localStorage.getItem('selectedTime');
 
             // If a selection exists, populate the form fields
-            if (selectedDateTime) {
-                const [selectedDate, selectedTime] = selectedDateTime.split(' ');
+          
                 document.getElementById('date').value = selectedDate;
                 document.getElementById('time').value = selectedTime;
-            }
+            
         });
 
     </script>
