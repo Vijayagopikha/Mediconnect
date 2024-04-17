@@ -56,7 +56,6 @@
 <h2>Patient Information Form</h2>
 
 <!-- Link to the details.html page -->
-<a href="details.html" class="btn"> Consult Now <span class="fa fa-chevron-right"></span> </a>
 
 <form action="#" method="post">
     <label for="phone">Phone Number:</label>
@@ -70,17 +69,18 @@
 
     <label for="payment">Payment Method:</label>
     <select id="payment" name="payment">
-        <option value="cash">Cash</option>
+        <option value="Debit card">Debit card</option>
         <option value="card">Card</option>
         <option value="upi">UPI</option>
     </select>
 
     <div id="upiDiv" style="display: none;">
         <label for="upi">UPI:</label>
-        <input type="text" id="upi" name="upi" placeholder="Enter UPI ID">
+        <input type="text" id="upi" 
+        + name="upi" placeholder="Enter UPI ID">
     </div>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Pay">
 </form>
 
 <script>
