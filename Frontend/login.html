@@ -79,7 +79,11 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="password"required>
             </div>
-           <button>Submit</button>
+           <button>Login</button>
+           <div class="input-group">
+            <p><a href="signup.html">Dont have an account? Signup</a></p>
+      
+          </div>
               </script>
               
         </form>
@@ -109,6 +113,7 @@
                     const responseData = await response.json();
                     alert('Login successful!');
                     localStorage.setItem('loggedInUserEmail', data['email']);
+                    window.location.href = 'calendar.html';
                     // Optionally, redirect the user to another page after successful login
                     // window.location.href = '/dashboard.html';
                 } else {
