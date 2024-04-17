@@ -41,19 +41,19 @@
     </div>
 
         <div style="display: flex;">
-            <button type="button" style="width:100px; height: 30px;"><a href="#" style="text-decoration: none; color:blueviolet">10-10.30 am</a></button>
+            <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">10-10.30 am</a></button>
             
         </div>
         <div style="display: flex;">
-            <button type="button" style="width:100px; height: 30px;"><a href="#"style="text-decoration: none; color:blueviolet">10.30-11 am</a></button>
+            <button type="button" style="width:100px; height: 30px;"><a href="appointment.html"style="text-decoration: none; color:blueviolet">10.30-11 am</a></button>
         </div>
 
             <div style="display: flex;">
-                <button type="button" style="width:100px; height: 30px;"><a href="#" style="text-decoration: none; color:blueviolet">11-11.30am</a></button>
+                <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">11-11.30am</a></button>
             </div>
 
             <div style="display: flex;">
-                <button type="button" style="width:100px; height: 30px;"><a href="#" style="text-decoration: none; color:blueviolet">11.30-1am</a></button>
+                <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">11.30-1am</a></button>
             </div>
     </div>
 </div>
@@ -89,6 +89,20 @@
                 }
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+    const timeSlots = document.querySelectorAll('.details button');
+    
+    timeSlots.forEach(slot => {
+        slot.addEventListener('click', function() {
+            const selectedDate = document.querySelector('.current-date').textContent.trim();
+            const selectedTime = slot.textContent.trim();
+            const selectedDateTime = selectedDate + ' ' + selectedTime;
+
+            localStorage.setItem('selectedDateTime', selectedDateTime);
+            window.location.href = 'appointment.html';
+        });
+    });
+});
     </script>
 </body>
 </html>

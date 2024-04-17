@@ -100,25 +100,24 @@
         </form>
     </div>
     <script>
-        // JavaScript to handle form submission
-        document.getElementById('appointment-form').addEventListener('submit', async function(event) {
+         document.getElementById('appointment-form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
             // Get form data
             const formData = new FormData(this);
             const formDataObject = {};
-for (let [key, value] of formData.entries()) {
-  formDataObject[key] = value;
-}
+            for (let [key, value] of formData.entries()) {
+                formDataObject[key] = value;
+            }
 
             // Send form data to backend
             try {
                 const response = await fetch('http://localhost:5000/submit-appointment', {
                     method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formDataObject)
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formDataObject)
                 });
 
                 if (response.ok) {
@@ -134,17 +133,34 @@ for (let [key, value] of formData.entries()) {
                 alert('An unexpected error occurred. Please try again later.');
             }
         });
-         document.addEventListener('DOMContentLoaded', function() {
-        // Retrieve email from local storage
-        const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
 
-        // Fill email field in appointment form if email is present
-        if (loggedInUserEmail) {
-            document.getElementById('email').value = loggedInUserEmail;
-            emailField.value = loggedInUserEmail;
-            emailField.setAttribute('readonly', 'true');
-        }
-    });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve email from local storage
+            const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+
+            // Fill email field in appointment form if email is present
+            const emailField = document.getElementById('email');
+            if (loggedInUserEmail) {
+                //const emailField = document.getElementById('email');
+                emailField.value = loggedInUserEmail;
+                emailField.setAttribute('readonly', 'true');
+            }else {
+                emailField.removeAttribute('readonly');
+            }
+      
+
+        
+            // Retrieve selected date and time from localStorage
+            const selectedDateTime = localStorage.getItem('selectedDateTime');
+
+            // If a selection exists, populate the form fields
+            if (selectedDateTime) {
+                const [selectedDate, selectedTime] = selectedDateTime.split(' ');
+                document.getElementById('date').value = selectedDate;
+                document.getElementById('time').value = selectedTime;
+            }
+        });
+
     </script>
 </body>
 </html>
