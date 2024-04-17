@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import sendEMail from './mail.js';
 
 dotenv.config();
 
@@ -101,7 +102,7 @@ app.post('/login', async (req, res) => {
 app.post('/submit-appointment', async (req, res) => {
   try {
     // Extract appointment details from request body
-    const { name, email, age, address, phone, date, time } = req.body;
+    const { name, email, age, address, phone, date, time,dtrmail } = req.body;
 
     // Create a new appointment instance
     const newAppointment = new Appointment({
@@ -115,7 +116,9 @@ app.post('/submit-appointment', async (req, res) => {
     });
 
     // Save the appointment to the database
+    console.log(dtrmail);
     const savedAppointment = await newAppointment.save();
+    sendEMail(name,email,age,address,phone,date,time,dtrmail);
     console.log(savedAppointment);
     // Respond with a success message
     res.status(201).json({ message: 'Appointment submitted successfully!' });

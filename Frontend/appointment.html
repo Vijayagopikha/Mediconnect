@@ -102,13 +102,14 @@
     <script>
       document.getElementById('appointment-form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
-
+            const dcmail = localStorage.getItem('selectedDoctorEmail');
+            console.log(dcmail);
             const formData = new FormData(this);
             const formDataObject = {};
             for (let [key, value] of formData.entries()) {
                 formDataObject[key] = value;
             }
-
+            formDataObject['dtrmail']=dcmail;
             try {
                 const response = await fetch('http://localhost:5000/submit-appointment', {
                     method: 'POST',
