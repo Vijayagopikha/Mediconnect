@@ -35,41 +35,53 @@
         </div>
     </div>
     
-    <div class="details">
-        <div style="display: flex;">
-        <button type="button" style="width:200px; height: 50px; font-size: 20px;"><a href="#" style="text-decoration: none; color:blueviolet";>Appoinment Slots</a></button>
+    <div style="display: flex;">
+        <button type="button" style="width:100px; height: 30px;" onclick="bookAppointment('10-10.30 am')">
+            <a href="appointment.html" style="text-decoration: none; color:blueviolet">10-10.30 am</a>
+        </button>
     </div>
-
-        <div style="display: flex;">
-            <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">10-10.30 am</a></button>
-            
-        </div>
-        <div style="display: flex;">
-            <button type="button" style="width:100px; height: 30px;"><a href="appointment.html"style="text-decoration: none; color:blueviolet">10.30-11 am</a></button>
-        </div>
-
-            <div style="display: flex;">
-                <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">11-11.30am</a></button>
-            </div>
-
-            <div style="display: flex;">
-                <button type="button" style="width:100px; height: 30px;"><a href="appointment.html" style="text-decoration: none; color:blueviolet">11.30-1am</a></button>
-            </div>
+    
+    <div style="display: flex;">
+        <button type="button" style="width:100px; height: 30px;" onclick="bookAppointment('10.30-11 am')">
+            <a href="appointment.html" style="text-decoration: none; color:blueviolet">10.30-11 am</a>
+        </button>
+    </div>
+    
+    <div style="display: flex;">
+        <button type="button" style="width:100px; height: 30px;" onclick="bookAppointment('11-11.30am')">
+            <a href="appointment.html" style="text-decoration: none; color:blueviolet">11-11.30am</a>
+        </button>
+    </div>
+    
+    <div style="display: flex;">
+        <button type="button" style="width:100px; height: 30px;" onclick="bookAppointment('11.30-1am')">
+            <a href="appointment.html" style="text-decoration: none; color:blueviolet">11.30-1am</a>
+        </button>
+    </div>
     </div>
 </div>
 
     <script src="calendarscript.js" defer></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve bookings from local storage
-            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+       document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve bookings from local storage
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
     
-            // Get date cells and set background color based on booking duration
-            const dateCells = document.querySelectorAll('.days li');
-            bookings.forEach(booking => {
-                if (booking.accepted) { // Check if booking is accepted
-                    const date = new Date(booking.eventDate);
-                    const dayIndex = date.getDay();
+    // Get date cells and set background color based on booking duration
+    const dateCells = document.querySelectorAll('.days li');
+    dateCells.forEach((cell, index) => {
+        cell.addEventListener('click', function() {
+            const date = new Date(); // Get the current date
+            date.setDate(index); // Set the date based on the cell's index
+            const dateString = date.toISOString().split('T')[0]; 
+            localStorage.setItem('selectedDate', dateString);
+            console.log('Clicked date:', dateString);
+        });
+        
+        bookings.forEach(booking => {
+            if (booking.accepted) { // Check if booking is accepted
+                const bookingDate = new Date(booking.eventDate);
+                if (bookingDate.getDate() === index + 1) { // Check if the booking matches the cell's date
                     let color;
                     switch (booking.duration) {
                         case 'Full day':
@@ -85,24 +97,23 @@
                             color = '';
                             break;
                     }
-                    dateCells[dayIndex].style.backgroundColor = color;
+                    cell.style.backgroundColor = color;
                 }
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-    const timeSlots = document.querySelectorAll('.details button');
-    
-    timeSlots.forEach(slot => {
-        slot.addEventListener('click', function() {
-            const selectedDate = document.querySelector('.current-date').textContent.trim();
-            const selectedTime = slot.textContent.trim();
-            const selectedDateTime = selectedDate + ' ' + selectedTime;
-
-            localStorage.setItem('selectedDateTime', selectedDateTime);
-            window.location.href = 'appointment.html';
+            }
         });
     });
 });
+        
+        function bookAppointment(time) {
+            // Get the full date
+            const currentDateElement = document.querySelector('.current-date');
+            const currentDate = new Date(currentDateElement.dataset.date);
+            const fullDate = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+            // Store the selected time and date in local storage
+           
+            localStorage.setItem('selectedTime', time);
+        }
     </script>
 </body>
 </html>
