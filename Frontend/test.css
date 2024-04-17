@@ -20,6 +20,11 @@
     transition: all .2s ease-out;
     text-decoration: none;
 }
+mg{
+    height:500px;
+    margin-left:-20%;
+    margin-top:15%;
+}
 
 html{
     font-size: 62.5%;
