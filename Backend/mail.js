@@ -16,7 +16,7 @@ const sendEMail = (name,email,age,address,phone,date,time,dtremail) => {
       subject: 'Appointment',
       text: `Appointment Details,\n
       Patient Name:${name},\n
-      E-mail:${email},\n
+      E-mail: ${email},\n
       Age:${age},\n
       Address:${address},\n
       Phone:${phone},\n
