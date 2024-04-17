@@ -116,10 +116,11 @@ app.post('/submit-appointment', async (req, res) => {
 
     // Save the appointment to the database
     const savedAppointment = await newAppointment.save();
-
+    console.log(savedAppointment);
     // Respond with a success message
     res.status(201).json({ message: 'Appointment submitted successfully!' });
   } catch (error) {
+    console.log(error);
     console.error('Error submitting appointment:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
