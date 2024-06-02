@@ -93,7 +93,7 @@
         document.getElementById('login-form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
-            // Get form data
+            // Get formdata
             const formData = new FormData(this);
             const data = {};
             for (let [key, value] of formData.entries()) {
